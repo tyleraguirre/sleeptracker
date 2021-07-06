@@ -65,7 +65,7 @@ class SleepTrackerFragment : Fragment() {
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
@@ -85,7 +85,7 @@ class SleepTrackerFragment : Fragment() {
         sleepTrackerViewModel.showSnackbarEvent.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 Snackbar.make(
-                    activity!!.findViewById(android.R.id.content),
+                    requireActivity().findViewById(android.R.id.content),
                     getString(R.string.cleared_message),
                     Snackbar.LENGTH_SHORT
                 ).show()
